@@ -1,73 +1,91 @@
-# Welcome to your Lovable project
+# CanSat Groundstation Visualizer
 
-## Project info
+A modern web-based groundstation for visualizing and monitoring telemetry data from a CanSat or similar aerospace payload. This project features a real-time dashboard built with React, TypeScript, and Vite, and a Python Flask backend for serving telemetry data.
 
-**URL**: https://lovable.dev/projects/ca8a197b-36a8-45aa-a998-e97be042489b
+## Features
 
-## How can I edit this code?
+- 📡 **Live Telemetry Table:** View the latest received data including altitude, pressure, temperature, voltage, GPS, and more.
+- 📈 **Real-Time Charts:** Visualize key metrics (altitude, temperature, voltage, pressure, tilt, rotation) as they update.
+- 🛰️ **Status Header:** See connection status and last update time.
+- 🗂️ **Modern UI:** Responsive, clean interface using shadcn/ui and Radix UI components.
+- 🔌 **Backend API:** Python Flask server reads the latest telemetry from `telemetry.csv` and serves it via a REST API.
 
-There are several ways of editing your application.
+## Project Structure
 
-**Use Lovable**
+```
+.
+├── server.py           # Flask backend serving telemetry API
+├── simulation.py       # (Optional) Simulates telemetry data
+├── telemetry.csv       # Telemetry data file (CSV)
+├── src/                # React frontend (TypeScript, Vite)
+│   ├── components/     # UI components (Sidebar, TelemetryTable, Charts, etc.)
+│   ├── pages/          # Main dashboard page
+│   └── ...             # Hooks, utils, styles
+├── public/             # Static assets
+├── package.json        # Frontend dependencies & scripts
+├── requirements.txt    # Backend dependencies
+└── README.md           # Project documentation
+```
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/ca8a197b-36a8-45aa-a998-e97be042489b) and start prompting.
+## Getting Started
 
-Changes made via Lovable will be committed automatically to this repo.
+### Prerequisites
 
-**Use your preferred IDE**
+- **Node.js** (v18+ recommended)
+- **Python** (3.8+ recommended)
+- **pip** (for Python dependencies)
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
+### 1. Install Frontend Dependencies
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+npm install
+```
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+### 2. Install Backend Dependencies
 
-# Step 3: Install the necessary dependencies.
-npm i
+```sh
+pip install -r requirements.txt
+```
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+### 3. Run the Backend Server
+
+```sh
+python server.py
+```
+
+- The Flask server will serve the API at `http://localhost:5000/api/telemetry`.
+
+### 4. Run the Frontend (Development)
+
+```sh
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+- The React app will be available at `http://localhost:8080`.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### 5. Open the Dashboard
 
-**Use GitHub Codespaces**
+Visit [http://localhost:8080](http://localhost:8080) in your browser.
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## Telemetry Data Format
 
-## What technologies are used for this project?
+The backend expects a `telemetry.csv` file with the following columns (in order):
 
-This project is built with:
+- Team_Id, TimeStamp, PacketCount, Altitude, Pressure, Temperature, Voltage, GpsTime, GpsLatitude, GpsLongitude, GpsAltitude, GpsSats, a_x, a_y, a_z, gyro_x, gyro_y, gyro_z, FSW_State, AngleX, AngleY, AngleZ
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## Customization
 
-## How can I deploy this project?
+- **UI Components:** Located in `src/components/` and `src/components/ui/`.
+- **API Endpoint:** Configured in `src/pages/Index.tsx` (`/api/telemetry`).
+- **Telemetry Fields:** Update `TelemetryData` interface in `src/pages/Index.tsx` as needed.
 
-Simply open [Lovable](https://lovable.dev/projects/ca8a197b-36a8-45aa-a998-e97be042489b) and click on Share -> Publish.
+## Scripts
 
-## Can I connect a custom domain to my Lovable project?
+- `npm run dev` – Start frontend in development mode
+- `npm run build` – Build frontend for production
+- `npm run preview` – Preview production build
+- `python server.py` – Start backend server
 
-Yes, you can!
+## License
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+MIT
