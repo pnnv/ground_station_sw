@@ -2,6 +2,18 @@
 
 A modern web-based groundstation for visualizing and monitoring telemetry data from a CanSat or similar aerospace payload. This project features a real-time dashboard built with React, TypeScript, and Vite, and a Python Flask backend for serving telemetry data.
 
+
+
+<!-- Screenshots -->
+
+![Dashboard Screenshot 1](screenshots/swappy-20250628-135253.png)
+![Dashboard Screenshot 2](screenshots/swappy-20250628-135811.png)
+
+
+
+
+<!-- here -->
+
 ## Features
 
 - 📡 **Live Telemetry Table:** View the latest received data including altitude, pressure, temperature, voltage, GPS, and more.
